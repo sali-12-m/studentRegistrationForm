@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration — Enroll Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+        <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>Student Registration</h1>
+      <p>Academic Year 2025–2026 &nbsp;·&nbsp; Complete all three sections to enroll</p>
+    </div>
+  </header>
+
+  <nav class="progress-track" aria-label="Form progress">
+    <div class="step-item active" id="si-1">
+      <div class="step-num">1</div>
+      <span class="step-label">Personal</span>
+    </div>
+    <div class="step-line" id="sl-1"></div>
+    <div class="step-item" id="si-2">
+      <div class="step-num">2</div>
+      <span class="step-label">Academic</span>
+    </div>
+    <div class="step-line" id="sl-2"></div>
+    <div class="step-item" id="si-3">
+      <div class="step-num">3</div>
+      <span class="step-label">Account</span>
+    </div>
+  </nav>
+
+  <main class="card" role="main">
+
+    <!-- STEP 1: Personal Information -->
+    <div class="step-panel active" id="panel-1">
+      <div class="section-header">
+        <h2>Personal Information</h2>
+        <p>Tell us about yourself. Fields marked <span style="color:var(--danger)">*</span> are required.</p>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Profile photo</p>
+        <div class="photo-row">
+          <div class="photo-circle" id="photo-circle" title="Click to upload photo"
+               onclick="document.getElementById('photo-input').click()">
+            <svg viewBox="0 0 24 24" stroke-width="1.5">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M20 21a8 8 0 1 0-16 0"/>
+            </svg>
+            <img id="photo-preview" alt="Student photo preview" />
+          </div>
+          <div class="photo-info">
+            <h4>Upload your photo</h4>
+            <p>JPG or PNG, maximum 2 MB</p>
+            <button class="btn-text" onclick="document.getElementById('photo-input').click()">Choose file</button>
+          </div>
+          <input type="file" id="photo-input" accept="image/jpeg,image/png"
+                 style="display:none" onchange="handlePhoto(this)" />
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Full name</p>
+        <div class="field-row cols-3">
+          <div class="field">
+            <label>First name <span class="req">*</span></label>
+            <input type="text" id="f-fname" placeholder="Abebe" autocomplete="given-name" />
+            <span class="field-error" id="e-fname">Required</span>
+          </div>
+          <div class="field">
+            <label>Middle name</label>
+            <input type="text" id="f-mname" placeholder="Optional" autocomplete="additional-name" />
+          </div>
+          <div class="field">
+            <label>Last name <span class="req">*</span></label>
+            <input type="text" id="f-lname" placeholder="Girma" autocomplete="family-name" />
+            <span class="field-error" id="e-lname">Required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Personal details</p>
+        <div class="field-row cols-3">
+          <div class="field">
+            <label>Date of birth <span class="req">*</span></label>
+            <input type="date" id="f-dob" />
+            <span class="field-error" id="e-dob">Required</span>
+          </div>
+          <div class="field">
+            <label>Gender</label>
+            <select id="f-gender">
+              <option value="">Select…</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Non-binary</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nationality</label>
+            <input type="text" id="f-nationality" placeholder="Ethiopian" />
+          </div>
+        </div>
+        <div class="field-row cols-1">
+          <div class="field">
+            <label>Home address</label>
+            <textarea id="f-address" placeholder="Street, sub-city, city, region…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Contact information</p>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Email address <span class="req">*</span></label>
+            <input type="email" id="f-email" placeholder="abebe.girma@email.com" autocomplete="email" />
+            <span class="field-error" id="e-email">Enter a valid email</span>
+          </div>
+          <div class="field">
+            <label>Phone number</label>
+            <input type="tel" id="f-phone" placeholder="+251 9XX XXX XXX" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Emergency contact name</label>
+            <input type="text" id="f-emname" placeholder="Full name" />
+          </div>
+          <div class="field">
+            <label>Emergency contact phone</label>
+            <input type="tel" id="f-emphone" placeholder="+251 9XX XXX XXX" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="step-counter">Step 1 of 3</span>
+        <button class="btn btn-primary" onclick="goNext(1)">
+          Continue
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Academic Details -->
+    <div class="step-panel" id="panel-2">
+      <div class="section-header">
+        <h2>Academic Details</h2>
+        <p>Tell us about your program and previous education.</p>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Enrollment details</p>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Faculty / School <span class="req">*</span></label>
+            <select id="f-faculty">
+              <option value="">Select a faculty…</option>
+              <option>Engineering &amp; Technology</option>
+              <option>Natural &amp; Applied Sciences</option>
+              <option>Business &amp; Economics</option>
+              <option>Social Sciences &amp; Humanities</option>
+              <option>Health Sciences</option>
+              <option>Law</option>
+              <option>Agriculture &amp; Environmental Sciences</option>
+              <option>Education</option>
+            </select>
+            <span class="field-error" id="e-faculty">Required</span>
+          </div>
+          <div class="field">
+            <label>Degree level <span class="req">*</span></label>
+            <select id="f-degree">
+              <option value="">Select…</option>
+              <option>Certificate</option>
+              <option>Diploma</option>
+              <option>Bachelor's (B.Sc. / B.A.)</option>
+              <option>Postgraduate Diploma</option>
+              <option>Master's (M.Sc. / M.A.)</option>
+              <option>PhD / Doctorate</option>
+            </select>
+            <span class="field-error" id="e-degree">Required</span>
+          </div>
+        </div>
+        <div class="field-row cols-3">
+          <div class="field">
+            <label>Program / Major</label>
+            <input type="text" id="f-major" placeholder="e.g. Computer Science" />
+          </div>
+          <div class="field">
+            <label>Enrollment year <span class="req">*</span></label>
+            <select id="f-year">
+              <option value="">Year…</option>
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+              <option>2023</option>
+            </select>
+            <span class="field-error" id="e-year">Required</span>
+          </div>
+          <div class="field">
+            <label>Semester</label>
+            <select id="f-semester">
+              <option value="">Select…</option>
+              <option>Semester 1 (Sep – Jan)</option>
+              <option>Semester 2 (Feb – Jun)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Study mode</label>
+            <select id="f-mode">
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Distance / Online</option>
+              <option>Blended</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Scholarship / Sponsorship</label>
+            <select id="f-scholarship">
+              <option>Self-funded</option>
+              <option>Government scholarship</option>
+              <option>University bursary</option>
+              <option>Private sponsor</option>
+              <option>NGO / Foundation grant</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Previous education</p>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Last institution attended</label>
+            <input type="text" id="f-school" placeholder="School / university name" />
+          </div>
+          <div class="field">
+            <label>Year of completion</label>
+            <input type="number" id="f-gradyear" placeholder="e.g. 2023" min="1980" max="2026" />
+          </div>
+        </div>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Qualification obtained</label>
+            <input type="text" id="f-qual" placeholder="e.g. Ethiopian Grade 12 Certificate" />
+          </div>
+          <div class="field">
+            <label>GPA / Score</label>
+            <input type="text" id="f-gpa" placeholder="e.g. 3.85 / 4.00" />
+          </div>
+        </div>
+        <div class="field-row cols-1">
+          <div class="field">
+            <label>Additional notes (optional)</label>
+            <textarea id="f-notes" placeholder="Achievements, awards, extracurriculars…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-ghost" onclick="goBack(2)">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="step-counter">Step 2 of 3</span>
+          <button class="btn btn-primary" onclick="goNext(2)">
+            Continue
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Account & Documents -->
+    <div class="step-panel" id="panel-3">
+      <div class="section-header">
+        <h2>Account &amp; Documents</h2>
+        <p>Create your student portal login and upload required documents.</p>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Login credentials</p>
+        <div class="field-row cols-1">
+          <div class="field">
+            <label>Student username <span class="req">*</span></label>
+            <input type="text" id="f-username" placeholder="e.g. agirma2026" autocomplete="username" />
+            <span class="field-hint">Only letters, numbers, and underscores. Min 5 characters.</span>
+            <span class="field-error" id="e-username">Username must be at least 5 characters</span>
+          </div>
+        </div>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>Password <span class="req">*</span></label>
+            <input type="password" id="f-pw" placeholder="Min. 8 characters" autocomplete="new-password" />
+            <span class="field-error" id="e-pw">Min. 8 characters required</span>
+          </div>
+          <div class="field">
+            <label>Confirm password <span class="req">*</span></label>
+            <input type="password" id="f-pw2" placeholder="Repeat your password" autocomplete="new-password" />
+            <span class="field-error" id="e-pw2">Passwords do not match</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Required documents</p>
+        <div class="field-row cols-2">
+          <div class="field">
+            <label>National ID / Passport</label>
+            <div class="file-drop" id="fd-natid">
+              <input type="file" id="f-natid" accept=".pdf,.jpg,.png"
+                     onchange="handleFile(this,'fd-natid','fn-natid')" />
+              <svg viewBox="0 0 24 24" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <circle cx="9" cy="10" r="2"/>
+                <path d="M15 8h2M15 12h2M9 16h8"/>
+              </svg>
+              <p>Click to upload PDF, JPG or PNG</p>
+              <span class="file-name" id="fn-natid"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Academic transcript / certificate</label>
+            <div class="file-drop" id="fd-transcript">
+              <input type="file" id="f-transcript" accept=".pdf,.jpg,.png"
+                     onchange="handleFile(this,'fd-transcript','fn-transcript')" />
+              <svg viewBox="0 0 24 24" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="15" y2="17"/>
+              </svg>
+              <p>Click to upload PDF, JPG or PNG</p>
+              <span class="file-name" id="fn-transcript"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <p class="form-section-title">Declaration</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="f-agree" />
+          <label for="f-agree">
+            I confirm that all information provided is accurate and complete to the best of my knowledge.
+            I agree to the institution's <a href="#" onclick="return false">Terms &amp; Conditions</a>,
+            Code of Conduct, and <a href="#" onclick="return false">Data Privacy Policy</a>.
+          </label>
+        </div>
+        <span class="field-error" id="e-agree" style="display:none; margin-left:28px;">
+          You must accept the declaration to proceed
+        </span>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-ghost" onclick="goBack(3)">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="step-counter">Step 3 of 3</span>
+          <button class="btn btn-primary" onclick="submitForm()">
+            Submit Registration
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-panel" id="panel-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2>Registration Submitted!</h2>
+      <p>Your application is under review. You will receive an email confirmation within 2–3 business days.</p>
+      <span class="ref-badge" id="ref-id">REF-2026-XXXX</span>
+      <div class="success-actions">
+        <button class="btn btn-ghost" onclick="window.print()">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" style="width:16px;height:16px;stroke:currentColor;fill:none;">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          Print confirmation
+        </button>
+        <button class="btn btn-primary" onclick="resetForm()">Register another student</button>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <svg viewBox="0 0 24 24" stroke-width="2" id="toast-icon">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <span id="toast-msg">Message</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
